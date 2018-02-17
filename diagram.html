@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elastic Search Viz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src='svg/d3.v3.min.js'></script>
+</head>
+
+<body>
+    <hr>
+    <table id="container">
+        <tr>
+            <td valign='top'><svg id="board" class='human'></svg></td>
+        </tr>
+        <tr>
+            <td>
+                    <button onclick="active_button('default');" id="default" class="button_selected">default</button>
+                    <button onclick="active_button('node');" id="node" class="button_not_selected"  >node add</button>
+                    <button onclick="active_button('edge');" id="edge" class="button_not_selected">edge add</button>
+                    <button onclick="doTDD();" id="tdd" class="button_not_selected">tdd</button>
+                    <button onclick="save();" id="save" class="button_not_selected">save</button>
+                    <button onclick="zap();" id="zap" class="button_not_selected">zap</button>
+                    <span id="current_state_forTheHuman">State: Default</span>
+            </td>
+        </tr>
+        <tr><td valign="top">
+            <div id="info"></div>
+
+        </td></tr>
+    </table>
+    <hr>
+
+    <script>
+
+        function doTDD() {
+            alert("Check the console for TDD output")
+            tdd()
+        }
+        let last_active_id = 'default'
+        function  active_button(id) { 
+
+            if ( last_active_id != id ) {
+                document.getElementById(last_active_id).classList.remove("button_selected")
+                document.getElementById(last_active_id).classList.add("button_not_selected")
+
+                document.getElementById(id).classList.remove("button_not_selected")
+                document.getElementById(id).classList.add("button_selected")
+
+                if ( id === "default") {
+                    STATE = NORMAL_MODE
+                } else if ( id === "node") {
+                    STATE = NODE_MODE
+                } else if ( id === "edge") {
+                    STATE = EDGE_MODE
+                }
+                document.getElementById("current_state_forTheHuman").innerHTML =STATE
+            }
+            last_active_id = id
+        }
+
+        let viewpane = document.getElementById("board");
+        viewpane.setAttribute("width", window.innerWidth * 0.95);
+        viewpane.setAttribute("height", window.innerHeight * 0.6);
+    </script>
+
+
+
+
+
+
+    <!-- Logic.js needs to be imported after the <svg> dom load...  the rest
+        of the imports are here just to keep 'like things in one group'. //--> 
+    <script src='SVG_DOM.js'></script>
+    <script type="text/javascript" src="ConfigAndGlobals.js"></script>
+    <script type="text/javascript" src="Logic.js"></script>
+    <script type="text/javascript" src="tdd.js"></script>
+    <script type="text/javascript" src="datastore.js"></script>
+    <script>
+        load()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+/* The chess pieces are actually unicode, so to prevent them from being highlighted... */
+/* I got this CSS from stackoverflow... the chess pieces are actually unicode and */
+/* the browser 'wanted' to highlight them during drag-and-dropping actions sweep over them. */
+/* The 'svg text' css prevents that. */
+svg text {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.button_selected { 
+
+   background-color: #ff6633;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button_not_selected { 
+
+   background-color: #0000ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+/*
+.goat button:hover {
+  background-color: #ff6633;
+}
+*/
+
+
+#chessboard {
+  border-style: solid;
+  margin-left: 20px;
+    margin-top: 10px;
+
+  /* width and height set by javascript innerWindow */ 
+}
+
+.human {
+  border-style: solid;
+
+  /* width and heigh set by javascript innerWindow */
+}
+
+
+
+#current_state_forTheHuman {
+    padding: 6px 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size:24px;
+}
+
+
+
+.active_btn {
+    background-color: #ff6633;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: #0000ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#container { 
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#board {
+
+  /* width and heigh set by javascript innerWindow */
+}
+
+
+/* Paint cells different colors in different situations*/
+.influenced {
+  fill:#ffe34c;
+}
+.enpassant {
+  fill:#00ffff;
+}
+
+.attackable {
+  fill:#ffa500;
+}
+.supported {
+  fill:#0000ff;
+}
+.killed {
+ font-size: 200%;
+}
+
+#spacer {  
+  width:6px;
+  height:100%;
+  margin-top: 20px;
+  margin-bottom: :20px;
+}
+.forHumans { 
+
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 26.4px;
+  height:100%;
+ }
+
+#info_table {
+  width:100%;
+}
+
+.even_info_row {
+  margin-left: 10px;
+/*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  font-size: 16px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color:#000000;
+  width:98%;
+  background-color: #e0e0e0;
+   border:1px solid black;
+ 
+}
+
+.odd_info_row {
+  margin-left: 10px;
+/*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-size: 16px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  color:#000000;
+  width:98%;
+  background-color: #fafafa;
+   border:1px solid black;
+ 
+}
+
+
+.even_tr {
+  background-color: #e0e0e0;
+}
+.odd_tr {
+  background-color: #fafafa;
+}
+.id {
+  width:50px;
+  border:1px solid black;
+  text-align: center;
+}
+
