@@ -10,9 +10,12 @@ let node_drag = d3.behavior.drag()
     .on('dragend', function (d, i) {
       console.log('Let go of ' + this.id)
     })
-
 d3.select('#board').on('click', function () {
   let coords = d3.mouse(this)
 
-  addNode(coords[0], coords[1])
+  if (STATE === NORMAL_MODE) {
+//    console.log(this)
+  } else if (STATE === NODE_MODE) {
+    addNode(coords[0], coords[1])
+  }
 })

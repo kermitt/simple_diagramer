@@ -29,7 +29,7 @@
        'y': 95,
        'id': 'AD',
        'size': 30,
-       'text': 'If your Saturnian has learned how to use the word \"floor\" you may try telling something new, that _here_ is a floor',
+       'text': 'If your Saturnian has learned how to use the word \"floor\" you may try telling him something new, that _here_ is a floor',
        'siblings': []
      }
    }
