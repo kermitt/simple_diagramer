@@ -1,6 +1,33 @@
 
 let DIAGRAM = d3.select('#board')
 
+const dragstarted = () => {
+  console.log('START!')
+
+  let d = d3.event.subject
+  let active = DIAGRAM.append('path').datum(d)
+  let x0 = d3.event.x
+  let y0 = d3.event.y
+
+  d3.event.on('drag', function () {
+    let x1 = d3.event.x
+    let y1 = d3.event.y
+    let dx = x1 - x0
+    let dy = y1 - y0
+
+    if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
+    else d[d.length - 1] = [x1, y1]
+    active.attr('d', line)
+  })
+}
+
+const dragged = () => {
+  console.log('Dragged! ')
+}
+
+const dragended = () => {
+  console.log('KDrage end! ')
+}
 // let node_drag = d3.behavior.drag()
 let node_drag = d3.drag()
     .on('drag', function (d, i) {
@@ -30,32 +57,13 @@ DIAGRAM.on('click', function () {
 }).on('drag', function () {
   console.log('DRAG!')
 })
-// https://codepen.io/Siddharth11/pen/YPMWeE
-// ?
 
-var line = d3.line()
-    .curve(d3.curveBasis)
+let line = d3.line().curve(d3.curveBasis)
 
-// var svg = d3.select("svg")
 DIAGRAM.call(d3.drag()
         .container(function () { return this })
         .subject(function () { var p = [d3.event.x, d3.event.y]; return [p, p] })
-        .on('start', dragstarted))
-
-function dragstarted () {
-  var d = d3.event.subject,
-    active = DIAGRAM.append('path').datum(d),
-    x0 = d3.event.x,
-    y0 = d3.event.y
-
-  d3.event.on('drag', function () {
-    var x1 = d3.event.x,
-      y1 = d3.event.y,
-      dx = x1 - x0,
-      dy = y1 - y0
-
-    if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
-    else d[d.length - 1] = [x1, y1]
-    active.attr('d', line)
-  })
-}
+        .on('start', dragstarted)
+         .on('drag', dragged)
+        .on('end', dragended)
+        )
