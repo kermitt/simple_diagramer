@@ -1,9 +1,12 @@
 
 let node_drag = d3.behavior.drag()
     .on('drag', function (d, i) {
-      d.x += d3.event.dx
-      d.y += d3.event.dy
-      d3.select(this).attr('transform', function (d, i) { return 'translate(' + [d.x, d.y] + ')' })
+      if (STATE === NORMAL_MODE) {
+        console.log('State: ' + STATE)
+        d.x += d3.event.dx
+        d.y += d3.event.dy
+        d3.select(this).attr('transform', function (d, i) { return 'translate(' + [d.x, d.y] + ')' })
+      }
     })
     .on('dragstart', function (d, i) {
     })

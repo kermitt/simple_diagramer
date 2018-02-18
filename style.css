@@ -96,6 +96,19 @@ svg text {
     cursor: pointer;
 }
 
+
+#color_select {
+  background-color:#0000ff;
+  color:white;
+    padding: 6px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size:24px;
+    height:100%;  
+}
+
 #container { 
     margin-left: 20px;
     margin-top: 10px;

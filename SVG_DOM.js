@@ -21,7 +21,8 @@ function makeInfoTable () {
     let css_row = i % 2 == 0 ? 'even_tr' : 'odd_tr'
     let css_input = i % 2 == 0 ? 'even_info_row' : 'odd_info_row'
     table += "<tr class='" + css_row + "'>"
-    table += "<td class='id'>" + node.id + '</td>'
+    let href = "<a href='javascript:erase(\"" + node.id + "\")'>" + node.id + '</a>'
+    table += "<td class='id'>" + href + '</td>'
     table += "<td><input class='" + css_input + "' type='text' id='text_" + node.id + "' value='" + node.text + "''></td>"
     table += '</tr>'
   })
@@ -29,8 +30,14 @@ function makeInfoTable () {
 
   document.getElementById('info').innerHTML = table
 }
+const erase = (id) => {
+  console.log('removing id ' + id)
+  d3.select('#' + id).remove()
+  delete NODES[id]
+
+  makeInfoTable()
+}
 const inflateNode = (node) => {
-  console.log('ADDING : ' + node.id)
   let p = d3.select(DOM_ID)
         .append('svg:g')
         .data([{
@@ -71,7 +78,6 @@ let last_active_node = ''
 let last_active_css = ''
 function clicked (node, i) {
   if (node.id !== last_active_node) {
-    // console.log(node.id + ' i ' + i + ' last_id: ' + last_active_node)
     let thisRow = document.getElementById('text_' + node.id)
     let this_class = thisRow.classList.contains('even_info_row') ? 'even_info_row' : 'odd_info_row'
     thisRow.classList.remove(this_class)
