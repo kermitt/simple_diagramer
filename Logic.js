@@ -4,8 +4,14 @@ let DIAGRAM = d3.select('#board')
 const dragstarted = () => {
   console.log('START!')
 
-  let d = d3.event.subject
+  let d = d3.event.subject  // What is a 'subject'?! TODO! Learn that.
+
+  let id = getNextLetter()
+  console.log('id: !' + id)
   let active = DIAGRAM.append('path').datum(d)
+
+  active.id = id
+
   let x0 = d3.event.x
   let y0 = d3.event.y
 
@@ -17,16 +23,13 @@ const dragstarted = () => {
 
     if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
     else d[d.length - 1] = [x1, y1]
+    line.id = id
     active.attr('d', line)
   })
 }
 
-const dragged = () => {
-  console.log('Dragged! ')
-}
-
 const dragended = () => {
-  console.log('KDrage end! ')
+  console.log('END! ')
 }
 // let node_drag = d3.behavior.drag()
 let node_drag = d3.drag()
@@ -61,9 +64,7 @@ DIAGRAM.on('click', function () {
 let line = d3.line().curve(d3.curveBasis)
 
 DIAGRAM.call(d3.drag()
-        .container(function () { return this })
-        .subject(function () { var p = [d3.event.x, d3.event.y]; return [p, p] })
+        .subject(function () { var p = [d3.event.x, d3.event.y]; return [p, p] }) // Actually, I do not understand this line: What does this do?
         .on('start', dragstarted)
-         .on('drag', dragged)
         .on('end', dragended)
         )
