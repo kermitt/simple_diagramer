@@ -21,4 +21,11 @@ DIAGRAM.on('click', function () {
   } else if (STATE === EDGE_MODE) {
 
   }
+}).on('mousemove', function () {
+  let coords = d3.mouse(this)
+  if (STATE === EDGE_MODE) {
+    console.log('EDGE: ')// + coords[0] + ' y: ' + coords[1])
+  }
+}).on('drag', function () {
+  console.log('DRAG!')
 })
