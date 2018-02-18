@@ -5,15 +5,12 @@ const dragstarted = () => {
   console.log('START!')
 
   let d = d3.event.subject  // What is a 'subject'?! TODO! Learn that.
-
+  console.log('do it!')
   let id = getNextLetter()
-  console.log('id: !' + id)
   let active = DIAGRAM.append('path').datum(d)
-
-  active.id = id
-
   let x0 = d3.event.x
   let y0 = d3.event.y
+  active.attr('id', id)
 
   d3.event.on('drag', function () {
     let x1 = d3.event.x

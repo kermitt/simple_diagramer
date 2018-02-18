@@ -29,8 +29,9 @@
                                         <button onclick="killAH();" class="button_not_selected">Test! Remove AH line</button>
 <script>
 function killAH() {
-    alert("About to remove AH! kill everyone")
-//      d3.select('#AH').remove()
+    alert("About to remove...")
+      d3.select('#AH').remove()
+  console.log('active: ' + JSON.stringify(d3.active, null, 6))
 
 }
 </script>
