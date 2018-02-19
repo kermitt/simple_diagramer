@@ -9,6 +9,7 @@ declaration style for 'private' functions and for public ones I will use the
 Perhaps 'independent/dependent' would be a better concept dyad.  
 
 
-
+## Metro 
+See the metro branch for the beginings of metro style picking
 
 
