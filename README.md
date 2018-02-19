@@ -8,6 +8,9 @@ declaration style for 'private' functions and for public ones I will use the
 <br>
 Perhaps 'independent/dependent' would be a better concept dyad.  
 
+## METRO
+This version has an example of metro style picking...  I did not finish out that thought experiment, but I wanted to keep that around...  ...So I made a branch to protect it.
+
 
 
 
