@@ -3,11 +3,12 @@ let DIAGRAM = d3.select('#board')
 
 let metro_line = DIAGRAM.append('line').attr('id', 'metro_line').attr('class', 'metro_line')
 let metro_circle = DIAGRAM.append('circle').attr('cx', -10).attr('cy', -10).attr('r', 6).attr('id', 'metro_circle').attr('class', 'metro_circle')
-
+let NEXT_LINE_ID = 1
 const dragstarted = () => {
   let d = d3.event.subject
 
-  let id = getNextLetter()
+  // let id = getNextLetter()
+  let id = 'line_' + NEXT_LINE_ID++
   let active = DIAGRAM.append('path').datum(d)
   let x0 = d3.event.x
   let y0 = d3.event.y
@@ -31,6 +32,16 @@ const dragstarted = () => {
       else d[d.length - 1] = [x1, y1]
       line.id = id
       active.attr('d', line)
+
+      // metro picker to show where it will end
+      let id2 = euclide([x1, y1])
+      let p2 = [NODES[id2].x, NODES[id2].y]
+      metro_line
+      .attr('x1', p2[0])
+        .attr('y1', p2[1])
+        .attr('x2', x1)
+        .attr('y2', y1)
+      metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
     }
   })
 }
@@ -48,6 +59,7 @@ function euclide (point) {
       selectedId = id
     }
   }
+  console.log('GOT x |' + point[0] + '|!! and ' + point[1] + ' found ' + selectedId)
   return selectedId
 }
 
