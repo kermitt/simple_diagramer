@@ -5,10 +5,8 @@ let metro_line = DIAGRAM.append('line').attr('id', 'metro_line').attr('class', '
 let metro_circle = DIAGRAM.append('circle').attr('cx', -10).attr('cy', -10).attr('r', 6).attr('id', 'metro_circle').attr('class', 'metro_circle')
 
 const dragstarted = () => {
-  console.log('START!')
+  let d = d3.event.subject
 
-  let d = d3.event.subject  // What is a 'subject'?! TODO! Learn that.
-  console.log('do it!')
   let id = getNextLetter()
   let active = DIAGRAM.append('path').datum(d)
   let x0 = d3.event.x
@@ -21,10 +19,19 @@ const dragstarted = () => {
     let dx = x1 - x0
     let dy = y1 - y0
 
-    if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
-    else d[d.length - 1] = [x1, y1]
-    line.id = id
-    active.attr('d', line)
+    if (STATE === NORMAL_MODE) {
+      // move a node
+      d3.select(this).attr('cx', d.x = d3.event.x).attr('cy', d.y = d3.event.y)
+      d3.select(this).attr('transform', function (d, i) { return 'translate(' + [x1, y1] + ')' })
+      NODES[this.id].x = x1
+      NODES[this.id].y = y1
+    } else if (STATE === EDGE_MODE) {
+      //  draw an edge
+      if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
+      else d[d.length - 1] = [x1, y1]
+      line.id = id
+      active.attr('d', line)
+    }
   })
 }
 
@@ -71,24 +78,31 @@ DIAGRAM.on('click', function () {
 }).on('mousemove', function () {
   let coords = d3.mouse(this)
   if (STATE === EDGE_MODE) {
-//    console.log('EDGE: ')// + coords[0] + ' y: ' + coords[1])
     let m = d3.mouse(this)
     let id = euclide(m)
     let p2 = [NODES[id].x, NODES[id].y]
-
     metro_line.attr('x1', p2[0]).attr('y1', p2[1]).attr('x2', m[0]).attr('y2', m[1])
     metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
-
-    console.log('x: ' + p2[0] + '  y: ' + p2[1])
+//    console.log('x: ' + p2[0] + '  y: ' + p2[1])
   }
 }).on('drag', function () {
   console.log('DRAG!')
+
+  if (STATE === EDGE_MODE) {
+    let m = d3.mouse(this)
+    let id = euclide(m)
+    let p2 = [NODES[id].x, NODES[id].y]
+    metro_line.attr('x1', p2[0]).attr('y1', p2[1]).attr('x2', m[0]).attr('y2', m[1])
+    metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
+//    console.log('x: ' + p2[0] + '  y: ' + p2[1])
+  }
 })
 
 let line = d3.line().curve(d3.curveBasis)
-
+/*
 DIAGRAM.call(d3.drag()
         .subject(function () { var p = [d3.event.x, d3.event.y]; return [p, p] }) // Actually, I do not understand this line: What does this do?
         .on('start', dragstarted)
         .on('end', dragended)
         )
+*/

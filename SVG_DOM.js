@@ -49,8 +49,17 @@ const inflateNode = (node) => {
         }]) // needed for dragging
         .attr('transform', 'translate(' + node.x + ',' + node.y + ')')
         .attr('id', node.id)
-        .call(node_drag)
-        .on('click', clicked)
+        // .call(node_drag)
+        // .on('click', clicked)
+        .call(d3.drag()
+        .subject(function () {
+          let p = [d3.event.x, d3.event.y]
+          return [p, p]
+        })
+        .on('start', dragstarted)
+        .on('end', dragended)
+        )
+
   let background = p.append('svg:ellipse')
         .attr('fill-opacity', 0.1)
         .attr('stroke', '#000')
