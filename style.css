@@ -19,6 +19,15 @@ path {
   stroke-linecap: round;
 }
 
+.metro_line {
+  fill: none;
+  stroke: #ff6633;
+  stroke-width: 1.5px;
+}
+
+.metro_circle {
+  fill: #ff6633;
+}
 
 .button_selected { 
 

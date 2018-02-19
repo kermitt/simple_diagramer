@@ -62,11 +62,17 @@ function killAH() {
                 document.getElementById(id).classList.add("button_selected")
 
                 if ( id === "default") {
+                                        d3.select('#metro_line').classed("metro_line", false)
+                    d3.select('#metro_line').classed("metro_circle", false)
                     STATE = NORMAL_MODE
                 } else if ( id === "node") {
+                                        d3.select('#metro_line').classed("metro_line", false)
+                    d3.select('#metro_line').classed("metro_circle", false)
                     STATE = NODE_MODE
                 } else if ( id === "edge") {
                     STATE = EDGE_MODE
+                    d3.select('#metro_line').classed("metro_line", true)
+                    d3.select('#metro_line').classed("metro_circle", true)
                 }
                 document.getElementById("current_state_forTheHuman").innerHTML =STATE
             }

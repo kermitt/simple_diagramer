@@ -1,6 +1,9 @@
 
 let DIAGRAM = d3.select('#board')
 
+let metro_line = DIAGRAM.append('line').attr('id', 'metro_line').attr('class', 'metro_line')
+let metro_circle = DIAGRAM.append('circle').attr('cx', -10).attr('cy', -10).attr('r', 6).attr('id', 'metro_circle').attr('class', 'metro_circle')
+
 const dragstarted = () => {
   console.log('START!')
 
@@ -23,6 +26,22 @@ const dragstarted = () => {
     line.id = id
     active.attr('d', line)
   })
+}
+
+function euclide (point) {
+  let distance = 1000000
+  let selectedId
+  for (let id in NODES) {
+    var a = NODES[id].x - point[0]
+    var b = NODES[id].y - point[1]
+    var c = Math.sqrt(a * a + b * b)
+
+    if (c < distance) {
+      distance = c
+      selectedId = id
+    }
+  }
+  return selectedId
 }
 
 const dragended = () => {
@@ -52,7 +71,15 @@ DIAGRAM.on('click', function () {
 }).on('mousemove', function () {
   let coords = d3.mouse(this)
   if (STATE === EDGE_MODE) {
-    console.log('EDGE: ')// + coords[0] + ' y: ' + coords[1])
+//    console.log('EDGE: ')// + coords[0] + ' y: ' + coords[1])
+    let m = d3.mouse(this)
+    let id = euclide(m)
+    let p2 = [NODES[id].x, NODES[id].y]
+
+    metro_line.attr('x1', p2[0]).attr('y1', p2[1]).attr('x2', m[0]).attr('y2', m[1])
+    metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
+
+    console.log('x: ' + p2[0] + '  y: ' + p2[1])
   }
 }).on('drag', function () {
   console.log('DRAG!')
