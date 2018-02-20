@@ -10,7 +10,30 @@ const DOM_ID = '#board'
 const RETURN_KEY = 16
 const SPACE_BAR = 32
 
-// + -- X -------------------------------------------------------------------- +
+// + -- Lines IDs... ---------------------------------------------------------- +
+let NEXT_LINE_ID = 1
+const setHighestLineId = () => {
+  let actualIds = []
+  for (let key in NODES) {
+    NODES[key].siblings.forEach((fromTo) => {
+      let tmp = fromTo.id.replace('#', '')
+      tmp = fromTo.id.replace('line_', '')
+      let i = parseInt(tmp)
+      actualIds.push(i)
+    })
+  }
+  actualIds.sort(sort_numbers)
+  actualIds = actualIds.reverse()
+  NEXT_LINE_ID = actualIds[0]
+  actualIds[0]++
+}
+
+const getNextLineId = () => {
+  let id = 'line_' + NEXT_LINE_ID++
+  return id
+}
+
+// + -- States --------------------------------------------------------------- +
 const NODE_MODE = 'State: add node'
 const EDGE_MODE = 'State: add an edge'
 const NORMAL_MODE = 'State: normal'

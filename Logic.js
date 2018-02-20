@@ -2,8 +2,7 @@
 let DIAGRAM = d3.select('#board')
 
 let metro_line = DIAGRAM.append('line').attr('id', 'metro_line').attr('class', 'metro_line')
-let metro_circle = DIAGRAM.append('circle').attr('cx', -10).attr('cy', -10).attr('r', 6).attr('id', 'metro_circle').attr('class', 'metro_circle')
-let NEXT_LINE_ID = 1
+// let metro_circle = DIAGRAM.append('circle').attr('cx', -10).attr('cy', -10).attr('r', 6).attr('id', 'metro_circle').attr('class', 'metro_circle')
 
 class FromTo {
   constructor () {
@@ -21,7 +20,7 @@ class FromTo {
     this.id = id
   }
 }
-let fromTo
+let fromTo = {}
 
 const dragStarted = () => {
   let d = d3.event.subject
@@ -31,7 +30,8 @@ const dragStarted = () => {
   if (STATE === EDGE_MODE) {
     line = d3.line().curve(d3.curveBasis)
     edge = DIAGRAM.append('path').datum(d)
-    id = 'line_' + NEXT_LINE_ID++
+    // id = 'line_' + NEXT_LINE_ID++
+    id = getNextLineId()
     fromTo = new FromTo()
     fromTo.setId(id)
     edge.attr('id', id)
@@ -54,7 +54,7 @@ const dragStarted = () => {
     } else if (STATE === EDGE_MODE) {
       // show the destination
       metro_line.classed('metro_line', true)
-      metro_circle.classed('metro_cirle', true)
+//      metro_circle.classed('metro_cirle', true)
 
       //  draw an edge
       fromTo.setFrom(this.id)
@@ -73,14 +73,13 @@ const dragStarted = () => {
         .attr('y1', p2[1])
         .attr('x2', x1)
         .attr('y2', y1)
-      metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
+//      metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
     }
   })
 }
 const moveEdge = (fromTo) => {
   // 'Move'? No. Actually remove and re-create in a different location. TODO: Differently.
   DIAGRAM.select('#' + fromTo.id).remove()
-  console.log('fromTo! ' + JSON.stringify(fromTo, null, 6))
   makeEdge(fromTo)
 }
 const dragEnded = (id) => {
@@ -88,7 +87,6 @@ const dragEnded = (id) => {
     for (let key in NODES) {
       let node = NODES[key]
       node.siblings.forEach((fromTo, i) => {
-        console.log(key + ' ---> ' + JSON.stringify(fromTo, null, 6))
         DIAGRAM.select('#' + fromTo.id).remove()
         makeEdge(fromTo)
       })
@@ -98,17 +96,14 @@ const dragEnded = (id) => {
       makeEdge(fromTo)
       DIAGRAM.select('#' + fromTo.id).remove()
       NODES[fromTo.from].siblings.push(fromTo)
-    // console.log('....' + JSON.stringify(fromTo, null, 6))
       fromTo = undefined
       metro_line.classed('metro_line', false)
-      metro_circle.classed('metro_cirle', false)
+//      metro_circle.classed('metro_cirle', false)
     }
   }
 }
 
 const makeEdge = (fromTo) => {
-  // co nsole.log('|' + JSON.stringify(fromTo, null, 6) + '|')
-
   let from = NODES[fromTo.from]
   let to = NODES[fromTo.to]
 

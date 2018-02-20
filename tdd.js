@@ -87,6 +87,11 @@ const test_whether_letterNumber_thing_is_coherent = () => {
   verdict(isOk, 'test_whether_letterNumber_thing_is_coherent letter: ' + actualLetter + ' number: ' + actualNumber)
 }
 
+const test_whether_lineId_thing_works = () => {
+  setHighestLineId()
+  let isOk = NEXT_LINE_ID > 1
+  verdict(isOk, 'test_whether_lineId_thing_works and it is ' + NEXT_LINE_ID)
+}
 // + ------------------------------------------------------------------------- +
 function verdict (isOk, msg) {
   let v = isOk ? 'PASS' : 'FAIL'
@@ -98,4 +103,5 @@ function tdd () {
   count_to_10_useExcelStyleLetters()
   test_getAngleBetween2Points()
   test_whether_letterNumber_thing_is_coherent()
+  test_whether_lineId_thing_works()
 }
