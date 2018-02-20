@@ -52,20 +52,21 @@ const inflateNode = (node) => {
         // .call(node_drag)
         // .on('click', clicked)
         .call(d3.drag()
-        .subject(function () {
-          let p = [d3.event.x, d3.event.y]
-          return [p, p]
-        })
-        .on('start', dragstarted)
-        .on('end', dragended)
+          .subject(function () {
+            let p = [d3.event.x, d3.event.y]
+            return [p, p]
+          })
+          .on('start', dragStarted)
+          .on('end', dragEnded)
         )
 
   let background = p.append('svg:ellipse')
-        .attr('fill-opacity', 0.1)
+        .attr('fill', '#f6f6f6')
+        .attr('fill-opacity', 1.0)
         .attr('stroke', '#000')
-        .attr('stroke-width', 4)
-        .attr('rx', node.size * 2)
-        .attr('ry', node.size)
+        .attr('stroke-width', 2)
+        .attr('rx', node.size * 1.2)
+        .attr('ry', node.size * 1.2)
 
 //        .attr('r', default_size)
 

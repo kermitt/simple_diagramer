@@ -23,7 +23,7 @@ class FromTo {
 }
 let fromTo
 
-const dragstarted = () => {
+const dragStarted = () => {
   let d = d3.event.subject
   let x0 = d3.event.x
   let y0 = d3.event.y
@@ -77,18 +77,37 @@ const dragstarted = () => {
     }
   })
 }
-const dragended = () => {
-  if (fromTo !== undefined) {
-    drawEdge(fromTo)
-    DIAGRAM.select('#' + fromTo.id).remove()
-    fromTo = undefined
-    metro_line.classed('metro_line', false)
-    metro_circle.classed('metro_cirle', false)
+const moveEdge = (fromTo) => {
+  // 'Move'? No. Actually remove and re-create in a different location. TODO: Differently.
+  DIAGRAM.select('#' + fromTo.id).remove()
+  console.log('fromTo! ' + JSON.stringify(fromTo, null, 6))
+  makeEdge(fromTo)
+}
+const dragEnded = (id) => {
+  if (STATE === NORMAL_MODE) {
+    for (let key in NODES) {
+      let node = NODES[key]
+      node.siblings.forEach((fromTo, i) => {
+        console.log(key + ' ---> ' + JSON.stringify(fromTo, null, 6))
+        DIAGRAM.select('#' + fromTo.id).remove()
+        makeEdge(fromTo)
+      })
+    }
+  } else if (STATE === EDGE_MODE) {
+    if (fromTo !== undefined) {
+      makeEdge(fromTo)
+      DIAGRAM.select('#' + fromTo.id).remove()
+      NODES[fromTo.from].siblings.push(fromTo)
+    // console.log('....' + JSON.stringify(fromTo, null, 6))
+      fromTo = undefined
+      metro_line.classed('metro_line', false)
+      metro_circle.classed('metro_cirle', false)
+    }
   }
 }
 
-const drawEdge = (fromTo) => {
-  console.log('|' + JSON.stringify(fromTo, null, 6) + '|')
+const makeEdge = (fromTo) => {
+  // co nsole.log('|' + JSON.stringify(fromTo, null, 6) + '|')
 
   let from = NODES[fromTo.from]
   let to = NODES[fromTo.to]
@@ -100,10 +119,10 @@ const drawEdge = (fromTo) => {
   context.moveTo(from.x, from.y)
   context.lineTo(middleX, middleY)
   context.lineTo(to.x, to.y)
-
   DIAGRAM.append('path')
     .attr('class', 'path')
     .attr('d', context.toString())
+    .attr('id', fromTo.id)
 }
 
 const euclide = (point) => {
@@ -122,6 +141,10 @@ const euclide = (point) => {
   return selectedId
 }
 DIAGRAM.on('click', function () {
+  let coords = d3.mouse(this)
+  if (STATE === NODE_MODE) {
+    addNode(coords[0], coords[1])
+  }
 }).on('mousemove', function () {
 }).on('drag', function () {
 })
