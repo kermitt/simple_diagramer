@@ -1,125 +1,93 @@
 
    let defaultNodes = {
-     'AA': {
-       'x': 254,
-       'y': 130,
-       'id': 'AA',
+     'A': {
+       'x': 242,
+       'y': 207,
+       'id': 'A',
        'size': 30,
        'text': 'Slithy toves gyre and gimble',
        'siblings': [
          {
-           'from': 'AA',
-           'to': 'AD',
-           'id': 'line_2'
-         }
-       ]
-     },
-     'AB': {
-       'x': 651,
-       'y': 220,
-       'id': 'AB',
-       'size': 30,
-       'text': 'Reuben kicked his donkey',
-       'siblings': [
-         {
-           'from': 'AB',
-           'to': 'AD',
-           'id': 'line_5'
+           'from': 'A',
+           'to': 'C',
+           'id': 'line_1'
          },
          {
-           'from': 'AB',
-           'to': 'AC',
-           'id': 'line_6'
-         }
-       ]
-     },
-     'AC': {
-       'x': 976,
-       'y': 180,
-       'id': 'AC',
-       'size': 30,
-       'text': 'Suppose Truth were a woman - what then?',
-       'siblings': []
-     },
-     'AD': {
-       'x': 688,
-       'y': 95,
-       'id': 'AD',
-       'size': 30,
-       'text': 'If your Saturnian has learned how to use the word "floor" you may try telling him something new, that _here_ is a floor',
-       'siblings': [
+           'from': 'A',
+           'to': 'B',
+           'id': 'line_2'
+         },
          {
-           'from': 'AD',
-           'to': 'AC',
+           'from': 'A',
+           'to': 'E',
            'id': 'line_3'
          }
        ]
      },
-     'AE': {
-       'x': 87,
-       'y': 368,
-       'id': 'AE',
-       'size': 30,
-       'text': '',
-       'siblings': [
-         {
-           'from': 'AE',
-           'to': 'AA',
-           'id': 'line_1'
-         }
-       ]
-     },
-     'AF': {
-       'x': 556,
-       'y': 359,
-       'id': 'AF',
-       'size': 30,
-       'text': '',
-       'siblings': [
-         {
-           'from': 'AF',
-           'to': 'AB',
-           'id': 'line_4'
-         }
-       ]
-     }
-   }
-
-   /* let defaultNodes = {
-     'AA': {
-       'x': 254,
-       'y': 130,
-       'id': 'AA',
-       'size': 30,
-       'text': 'Slithy toves gyre and gimble',
-       'siblings': []
-     },
-     'AB': {
-       'x': 651,
-       'y': 220,
-       'id': 'AB',
+     'B': {
+       'x': 507,
+       'y': 208,
+       'id': 'B',
        'size': 30,
        'text': 'Reuben kicked his donkey',
        'siblings': []
      },
-     'AC': {
-       'x': 976,
-       'y': 180,
-       'id': 'AC',
+     'C': {
+       'x': 430,
+       'y': 319,
+       'id': 'C',
        'size': 30,
        'text': 'Suppose Truth were a woman - what then?',
        'siblings': []
      },
-     'AD': {
-       'x': 688,
-       'y': 95,
-       'id': 'AD',
+     'D': {
+       'x': 681,
+       'y': 268,
+       'id': 'D',
        'size': 30,
-       'text': 'If your Saturnian has learned how to use the word \"floor\" you may try telling him something new, that _here_ is a floor',
+       'text': '',
+       'siblings': [
+         {
+           'from': 'D',
+           'to': 'E',
+           'id': 'line_4'
+         }
+       ]
+     },
+     'E': {
+       'x': 876,
+       'y': 143,
+       'id': 'E',
+       'size': 30,
+       'text': 'If your Saturnian has learned how to use the word "floor" you may try telling him something new, that _here_ is a floor',
+       'siblings': []
+     },
+     'F': {
+       'x': 1104,
+       'y': 316,
+       'id': 'F',
+       'size': 30,
+       'text': '',
+       'siblings': []
+     },
+     'G': {
+       'x': 144,
+       'y': 319,
+       'id': 'G',
+       'size': 30,
+       'text': '',
+       'siblings': []
+     },
+     'H': {
+       'x': 144,
+       'y': 319,
+       'id': 'H',
+       'size': 30,
+       'text': '',
        'siblings': []
      }
    }
-*/
+
    const getHighestLetter = () => {
       // find the highest id in the nodes...
      let letters = []

@@ -52,7 +52,9 @@ const inflateNode = (node) => {
         .attr('id', node.id)
         // .call(node_drag)
         .on('click', function () {
-          removeNode(node.id)
+          if (STATE === KILL_MODE) {
+            removeNode(node.id)
+          }
         })
         .call(d3.drag()
           .subject(function () {
@@ -85,6 +87,31 @@ const inflateNode = (node) => {
         .attr('stroke', 'none')
         .attr('pointer-events', 'none')
 }
-const removeNode = (id) => {
-  console.log('removeNde : ' + id)
+const removeNode = (targetId) => {
+  let lines_to_kill = {}
+  for (var key in NODES) {
+    let node = NODES[key]
+    let keep = []
+    node.siblings.forEach((fromTo) => {
+      if (fromTo.to !== targetId && fromTo.from !== targetId) {
+        keep.push(fromTo)
+      } else {
+        // Collect ids of lines to remove from the SVG DOM
+        lines_to_kill[fromTo.id] = 0
+      }
+    })
+    // Overwrite each in NODES with only the good information
+    node.siblings = keep
+  }
+
+  // remove the paths
+  for (var id in lines_to_kill) {
+    DIAGRAM.select('#' + id).remove()
+  }
+  // remove the node from NODE
+  delete NODES[targetId]
+  // remove the node from the DOM
+  DIAGRAM.select('#' + targetId).remove()
+  // recreate the table, now without the target row
+  makeInfoTable()
 }
