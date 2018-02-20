@@ -35,8 +35,8 @@
                     </select>
                     <button onclick="doTDD();" id="tdd" class="button_not_selected">tdd</button>
                     <button onclick="save();" id="save" class="button_not_selected">save</button>
-                    <button onclick="zap();" id="zap" class="button_not_selected">zap</button>
-<button onclick="killAH();" class="button_not_selected">Test! Remove AH line</button>
+                    <button onclick="zap();" id="zap" class="button_not_selected">clear datastore</button>
+                    <button onclick="active_button('kill');" id="kill" class="button_not_selected">delete</button>
 <script>
 function killAH() {
     alert("About to remove...")
@@ -72,19 +72,19 @@ function killAH() {
                 document.getElementById(id).classList.add("button_selected")
 
                 if ( id === "default") {
-                                        d3.select('#metro_line').classed("metro_line", false)
-                    d3.select('#metro_line').classed("metro_circle", false)
+                    d3.select('#metro_line').classed("metro_line", false)
                     STATE = NORMAL_MODE
                 } else if ( id === "node") {
-                                        d3.select('#metro_line').classed("metro_line", false)
-                    d3.select('#metro_line').classed("metro_circle", false)
+                    d3.select('#metro_line').classed("metro_line", false)
                     STATE = NODE_MODE
                 } else if ( id === "edge") {
                     STATE = EDGE_MODE
                     d3.select('#metro_line').classed("metro_line", true)
-                    d3.select('#metro_line').classed("metro_circle", true)
+                } else if ( id === "kill") {
+                    STATE = KILL_MODE
+                    d3.select('#metro_line').classed("metro_line", true)
                 }
-                document.getElementById("current_state_forTheHuman").innerHTML =STATE
+                document.getElementById("current_state_forTheHuman").innerHTML = STATE
             }
             last_active_id = id
         }

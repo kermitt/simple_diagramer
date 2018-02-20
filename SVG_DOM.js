@@ -37,6 +37,7 @@ const erase = (id) => {
 
   makeInfoTable()
 }
+
 const inflateNode = (node) => {
   let p = d3.select(DOM_ID)
         .append('svg:g')
@@ -50,7 +51,9 @@ const inflateNode = (node) => {
         .attr('transform', 'translate(' + node.x + ',' + node.y + ')')
         .attr('id', node.id)
         // .call(node_drag)
-        // .on('click', clicked)
+        .on('click', function () {
+          removeNode(node.id)
+        })
         .call(d3.drag()
           .subject(function () {
             let p = [d3.event.x, d3.event.y]
@@ -82,24 +85,6 @@ const inflateNode = (node) => {
         .attr('stroke', 'none')
         .attr('pointer-events', 'none')
 }
-
-// + --- Color the active row in the table ----------------------------------- +
-let last_active_node = ''
-let last_active_css = ''
-function clicked (node, i) {
-  if (node.id !== last_active_node) {
-    let thisRow = document.getElementById('text_' + node.id)
-    let this_class = thisRow.classList.contains('even_info_row') ? 'even_info_row' : 'odd_info_row'
-    thisRow.classList.remove(this_class)
-    thisRow.classList.add('highlight')
-
-    if (last_active_node.length > 0) {
-      let thatRow = document.getElementById('text_' + last_active_node)
-      thatRow.classList.remove('highlight')
-      thatRow.classList.add(last_active_css)
-    }
-
-    last_active_css = this_class
-    last_active_node = node.id
-  }
+const removeNode = (id) => {
+  console.log('removeNde : ' + id)
 }

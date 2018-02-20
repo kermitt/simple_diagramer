@@ -26,15 +26,16 @@ const dragStarted = () => {
   let d = d3.event.subject
   let x0 = d3.event.x
   let y0 = d3.event.y
-  let id, edge, line
+  let line_id, edge, line
   if (STATE === EDGE_MODE) {
     line = d3.line().curve(d3.curveBasis)
     edge = DIAGRAM.append('path').datum(d)
-    // id = 'line_' + NEXT_LINE_ID++
-    id = getNextLineId()
+
+    line_id = getNextLineId()
+    console.log('getNextLineId() ' + line_id)
     fromTo = new FromTo()
-    fromTo.setId(id)
-    edge.attr('id', id)
+    fromTo.setId(line_id)
+    edge.attr('id', line_id)
   }
   d3.event.on('drag', function () {
     let x1 = d3.event.x
@@ -54,13 +55,13 @@ const dragStarted = () => {
     } else if (STATE === EDGE_MODE) {
       // show the destination
       metro_line.classed('metro_line', true)
-//      metro_circle.classed('metro_cirle', true)
 
       //  draw an edge
       fromTo.setFrom(this.id)
       if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
       else d[d.length - 1] = [x1, y1]
-      line.id = id
+      line.id = line_id
+      console.log('add a line for ' + line_id)
       edge.attr('d', line)
 
       // metro picker to show where it will end
@@ -73,7 +74,6 @@ const dragStarted = () => {
         .attr('y1', p2[1])
         .attr('x2', x1)
         .attr('y2', y1)
-//      metro_circle.attr('cx', p2[0]).attr('cy', p2[1])
     }
   })
 }
@@ -87,7 +87,9 @@ const dragEnded = (id) => {
     for (let key in NODES) {
       let node = NODES[key]
       node.siblings.forEach((fromTo, i) => {
+        console.log('removing id ' + fromTo.id)
         DIAGRAM.select('#' + fromTo.id).remove()
+
         makeEdge(fromTo)
       })
     }
@@ -98,7 +100,6 @@ const dragEnded = (id) => {
       NODES[fromTo.from].siblings.push(fromTo)
       fromTo = undefined
       metro_line.classed('metro_line', false)
-//      metro_circle.classed('metro_cirle', false)
     }
   }
 }

@@ -7,8 +7,8 @@ let NEXT = 1  // TODO! LOCALSTORAGE
 let NODES = {}
 let default_size = 30
 const DOM_ID = '#board'
-const RETURN_KEY = 16
-const SPACE_BAR = 32
+// const RETURN_KEY = 16
+// const SPACE_BAR = 32
 
 // + -- Lines IDs... ---------------------------------------------------------- +
 let NEXT_LINE_ID = 1
@@ -25,11 +25,12 @@ const setHighestLineId = () => {
   actualIds.sort(sort_numbers)
   actualIds = actualIds.reverse()
   NEXT_LINE_ID = actualIds[0]
-  actualIds[0]++
+  NEXT_LINE_ID++
 }
 
 const getNextLineId = () => {
   let id = 'line_' + NEXT_LINE_ID++
+
   return id
 }
 
@@ -37,6 +38,7 @@ const getNextLineId = () => {
 const NODE_MODE = 'State: add node'
 const EDGE_MODE = 'State: add an edge'
 const NORMAL_MODE = 'State: normal'
+const KILL_MODE = 'State: delete node'
 let STATE = NORMAL_MODE
 
 // + -- sorting -------------------------------------------------------------- +

@@ -92,6 +92,7 @@ const test_whether_lineId_thing_works = () => {
   let isOk = NEXT_LINE_ID > 1
   verdict(isOk, 'test_whether_lineId_thing_works and it is ' + NEXT_LINE_ID)
 }
+
 // + ------------------------------------------------------------------------- +
 function verdict (isOk, msg) {
   let v = isOk ? 'PASS' : 'FAIL'
