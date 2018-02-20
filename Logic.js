@@ -32,7 +32,6 @@ const dragStarted = () => {
     edge = DIAGRAM.append('path').datum(d)
 
     line_id = getNextLineId()
-    console.log('getNextLineId() ' + line_id)
     fromTo = new FromTo()
     fromTo.setId(line_id)
     edge.attr('id', line_id)
@@ -87,9 +86,7 @@ const dragEnded = (id) => {
     for (let key in NODES) {
       let node = NODES[key]
       node.siblings.forEach((fromTo, i) => {
-        console.log('removing id ' + fromTo.id)
         DIAGRAM.select('#' + fromTo.id).remove()
-
         makeEdge(fromTo)
       })
     }

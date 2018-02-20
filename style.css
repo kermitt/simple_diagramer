@@ -19,9 +19,15 @@ path {
   stroke-linecap: round;
 }
 
-.top {
-  z-index: 20px;
-background-color: #ff0000;
+.blue {
+background-color: #0000ff;
+}
+.orange {
+background-color: #ff6633;
+
+}
+.grey {
+background-color: #e0e0e0;
 }
 
 .metro_line {

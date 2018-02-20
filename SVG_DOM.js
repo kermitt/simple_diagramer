@@ -39,6 +39,8 @@ const erase = (id) => {
 }
 
 const inflateNode = (node) => {
+  let color = node.color !== undefined ? node.color : getColor()
+
   let p = d3.select(DOM_ID)
         .append('svg:g')
         .data([{
@@ -66,14 +68,12 @@ const inflateNode = (node) => {
         )
 
   let background = p.append('svg:ellipse')
-        .attr('fill', '#f6f6f6')
+        .attr('fill', color)
         .attr('fill-opacity', 1.0)
         .attr('stroke', '#000')
         .attr('stroke-width', 2)
         .attr('rx', node.size * 1.2)
         .attr('ry', node.size * 1.2)
-
-//        .attr('r', default_size)
 
   let foreground = p.append('svg:text')
         .text(node.id)

@@ -5,6 +5,7 @@
        'y': 207,
        'id': 'A',
        'size': 30,
+       'color': '#ff6633',
        'text': 'Slithy toves gyre and gimble',
        'siblings': [
          {
@@ -29,6 +30,7 @@
        'y': 208,
        'id': 'B',
        'size': 30,
+       'color': '#ff6633',
        'text': 'Reuben kicked his donkey',
        'siblings': []
      },
@@ -37,6 +39,7 @@
        'y': 319,
        'id': 'C',
        'size': 30,
+       'color': '#0000ff',
        'text': 'Suppose Truth were a woman - what then?',
        'siblings': []
      },
@@ -45,6 +48,8 @@
        'y': 268,
        'id': 'D',
        'size': 30,
+       'color': '#e0e0e0',
+
        'text': '',
        'siblings': [
          {
@@ -59,6 +64,7 @@
        'y': 143,
        'id': 'E',
        'size': 30,
+       'color': '#e0e0e0',
        'text': 'If your Saturnian has learned how to use the word "floor" you may try telling him something new, that _here_ is a floor',
        'siblings': []
      },
@@ -67,22 +73,7 @@
        'y': 316,
        'id': 'F',
        'size': 30,
-       'text': '',
-       'siblings': []
-     },
-     'G': {
-       'x': 144,
-       'y': 319,
-       'id': 'G',
-       'size': 30,
-       'text': '',
-       'siblings': []
-     },
-     'H': {
-       'x': 144,
-       'y': 319,
-       'id': 'H',
-       'size': 30,
+       'color': '#e0e0e0',
        'text': '',
        'siblings': []
      }

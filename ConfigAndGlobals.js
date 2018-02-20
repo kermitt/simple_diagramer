@@ -30,10 +30,28 @@ const setHighestLineId = () => {
 
 const getNextLineId = () => {
   let id = 'line_' + NEXT_LINE_ID++
-
   return id
 }
 
+// + -- Color ---------------------------------------------------------------- +
+const BLACK = '#000000'
+const BLUE = '#0000ff'
+const GREY = '#e0e0e0'
+const ORANGE = '#ff6633'
+
+const getColor = () => {
+  let w = document.getElementById('color_select')
+  let selectedColor = w.options[w.selectedIndex].text
+  if (selectedColor === 'Black') {
+    return BLACK
+  } else if (selectedColor === 'Orange') {
+    return Orange
+  } else if (selectedColor === 'Blue') {
+    return BLUE
+  } else if (selectedColor === 'Grey') {
+    return GREY
+  }
+}
 // + -- States --------------------------------------------------------------- +
 const NODE_MODE = 'State: add node'
 const EDGE_MODE = 'State: add an edge'
