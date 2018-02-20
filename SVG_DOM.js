@@ -2,7 +2,7 @@
 function addNode (x, y) {
   // for raw nodes not from the data store
   let id = getNextLetter()
-  NODES[id] = {x: x, y: y, id: id, size: default_size, text: '', siblings: []}
+  NODES[id] = {x: x, y: y, id: id, size: default_size, text: '', siblings: [], color: getColor()}
   inflateNode(NODES[id])
 
   makeInfoTable()
@@ -39,8 +39,8 @@ const erase = (id) => {
 }
 
 const inflateNode = (node) => {
-  let color = node.color !== undefined ? node.color : getColor()
-
+  // let color = node.color !== undefined ? node.color : getColor()
+  let color = node.color
   let p = d3.select(DOM_ID)
         .append('svg:g')
         .data([{

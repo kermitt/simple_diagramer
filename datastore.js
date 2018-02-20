@@ -80,8 +80,27 @@
        'color': '#e0e0e0',
        'text': 'The human body is the best picture of the human soul.',
        'siblings': []
+     },
+     'I': {
+       'x': 507,
+       'y': 109,
+       'id': 'I',
+       'size': 30,
+       'text': '',
+       'siblings': [],
+       'color': '#e0e0e0'
+     },
+     'K': {
+       'x': 759,
+       'y': 72,
+       'id': 'K',
+       'size': 30,
+       'text': '',
+       'siblings': [],
+       'color': '#0000ff'
      }
    }
+
    const getHighestLetter = () => {
       // find the highest id in the nodes...
      let letters = []

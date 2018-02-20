@@ -45,7 +45,7 @@ const getColor = () => {
   if (selectedColor === 'Black') {
     return BLACK
   } else if (selectedColor === 'Orange') {
-    return Orange
+    return ORANGE
   } else if (selectedColor === 'Blue') {
     return BLUE
   } else if (selectedColor === 'Grey') {
