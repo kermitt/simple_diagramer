@@ -60,7 +60,6 @@ const dragStarted = () => {
       if (dx * dx + dy * dy > 100) d.push([x0 = x1, y0 = y1])
       else d[d.length - 1] = [x1, y1]
       line.id = line_id
-      console.log('add a line for ' + line_id)
       edge.attr('d', line)
 
       // metro picker to show where it will end
@@ -104,14 +103,22 @@ const dragEnded = (id) => {
 const makeEdge = (fromTo) => {
   let from = NODES[fromTo.from]
   let to = NODES[fromTo.to]
-
-  let middleX = (from.x + to.x) / 2
-  let middleY = (from.y + to.y) / 2
-
   const context = d3.path()
-  context.moveTo(from.x, from.y)
-  context.lineTo(middleX, middleY)
-  context.lineTo(to.x, to.y)
+
+  if (fromTo.from !== fromTo.to) {
+    let middleX = (from.x + to.x) / 2
+    let middleY = (from.y + to.y) / 2
+
+    context.moveTo(from.x, from.y)
+    context.lineTo(middleX, middleY)
+    context.lineTo(to.x, to.y)
+  } else {
+    let angle = Math.floor(Math.random() * Math.floor(360))
+
+    let xy1 = getNewXY(NODES[fromTo.from].x, NODES[fromTo.from].y, angle, default_size * 1.2)
+    context.arc(xy1.x, xy1.y, 20, 0, 2 * Math.PI)
+  }
+
   DIAGRAM.append('path')
     .attr('class', 'path')
     .attr('d', context.toString())

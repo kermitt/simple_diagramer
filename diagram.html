@@ -5,16 +5,6 @@
     <title>Elastic Search Viz</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src='svg/d3.v4.min.js'></script>
-    <style>
-
-
-.link {
-  fill: none;
-  stroke: #555;
-  stroke-opacity: 0.4;
-  stroke-width: 1.5px;
-}
-</style>
 </head>
 
 <body>
@@ -69,7 +59,6 @@ function killAH() {
             if ( last_active_id != id ) {
                 document.getElementById(last_active_id).classList.remove("button_selected")
                 document.getElementById(last_active_id).classList.add("button_not_selected")
-
                 document.getElementById(id).classList.remove("button_not_selected")
                 document.getElementById(id).classList.add("button_selected")
 
@@ -84,7 +73,7 @@ function killAH() {
                     d3.select('#metro_line').classed("metro_line", true)
                 } else if ( id === "kill") {
                     STATE = KILL_MODE
-                    d3.select('#metro_line').classed("metro_line", true)
+                    d3.select('#metro_line').classed("metro_line", false)
                 }
                 document.getElementById("current_state_forTheHuman").innerHTML = STATE
             }
@@ -95,11 +84,6 @@ function killAH() {
         viewpane.setAttribute("width", window.innerWidth * 0.95);
         viewpane.setAttribute("height", window.innerHeight * 0.6);
     </script>
-
-
-
-
-
 
     <!-- Logic.js needs to be imported after the <svg> dom load...  the rest
         of the imports are here just to keep 'like things in one group'. //--> 

@@ -22,12 +22,17 @@
            'from': 'A',
            'to': 'E',
            'id': 'line_3'
+         },
+         {
+           'from': 'A',
+           'to': 'A',
+           'id': 'line_5'
          }
        ]
      },
      'B': {
-       'x': 507,
-       'y': 208,
+       'x': 455,
+       'y': 309,
        'id': 'B',
        'size': 30,
        'color': '#ff6633',
@@ -35,8 +40,8 @@
        'siblings': []
      },
      'C': {
-       'x': 430,
-       'y': 319,
+       'x': 118,
+       'y': 348,
        'id': 'C',
        'size': 30,
        'color': '#0000ff',
@@ -49,8 +54,7 @@
        'id': 'D',
        'size': 30,
        'color': '#e0e0e0',
-
-       'text': '',
+       'text': 'What can be shown, cannot be said.',
        'siblings': [
          {
            'from': 'D',
@@ -74,11 +78,10 @@
        'id': 'F',
        'size': 30,
        'color': '#e0e0e0',
-       'text': '',
+       'text': 'The human body is the best picture of the human soul.',
        'siblings': []
      }
    }
-
    const getHighestLetter = () => {
       // find the highest id in the nodes...
      let letters = []
