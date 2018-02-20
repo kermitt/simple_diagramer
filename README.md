@@ -16,8 +16,8 @@ http://localhost:3030/diagram.html
 
 ## Buttons and what/how
 1:default : allows nodes to be dragged      
-2:node add : click on the white background to add new node. Note1 - a table entry will be created, which has a text field. Note2 - set the <select> color to choose a background    
-3:<select> choose color for the 'node add'    
+2:node add : click on the white background to add new node. Note1 - a table entry will be created, which has a text field. Note2 - set the select color to choose a background    
+3:select choose color for the 'node add'        
 4:edge add : click on a node and drag to a node. Note1: If you do not drag far enough you will get a circle. This is meant to denote a cycle. Frankly, I do not know if I like this feature or not.    
 5:tdd : Run the tdd tests ( check console for output )    
 6:save : This will marshal whatever is currently showing to localstore    
