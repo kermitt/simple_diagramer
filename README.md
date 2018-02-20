@@ -1,5 +1,5 @@
 # simple_diagramer
-TODO  
+This is the frontend of an Elastic Search 'pipeline' viz mechanism. That is what I am using it for - but this is actually a standalone simple diagram mechanism.
 
 ## Style note
 In my javascript code here, I will use 'const foo = () => {}'
