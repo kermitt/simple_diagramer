@@ -48,7 +48,7 @@ const recursion = (parent, d) => {
       recursion(ancestor, obj)
     } else {
       let spacer = pad(ancestor)
-      let denumberedAncestor = ancestor.replace(/\|\d/, '|x') // Current numbers, such as '|6' to '|x'...
+      let denumberedAncestor = ancestor.replace(/\|\d/, '|x') // Convert numbers, such as '|6' to '|x'...
       if (seen.hasOwnProperty(denumberedAncestor)) {
         seen[denumberedAncestor]++
       } else {
