@@ -67,6 +67,20 @@ const recursion = (parent, d) => {
 
 // + ------------------------------------------------------------------------- +
 function self_test () {
+/* // Should make this output
+0   .   1
+2   ..   one
+3   ..   two
+4   ...   ooo
+5   ...   ppp
+6   ...   qqq
+13   ...   FINDME
+The end....   emitted 7 of 16
+ *
+ */
+
+
+
   const verdict = (bool) => {
     return bool ? 'PASS' : 'FAIL'
   }
